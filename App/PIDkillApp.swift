@@ -17,7 +17,7 @@ struct PIDkillApp: App {
             HStack(spacing: 4) {
                 Image(systemName: "terminal.fill")
                 if viewModel.totalCount > 0 {
-                    Text("\(viewModel.totalCount)")
+                    Text("\(String(viewModel.totalCount))")
                         .font(.system(size: 11, weight: .bold, design: .monospaced))
                 }
             }

@@ -17,6 +17,9 @@ mkdir -p "${BUNDLE_DIR}/Contents/Resources"
 
 cp "${PROJECT_DIR}/.build/release/${APP_NAME}" "${BUNDLE_DIR}/Contents/MacOS/${APP_NAME}"
 cp "${PROJECT_DIR}/Resources/Info.plist" "${BUNDLE_DIR}/Contents/Info.plist"
+if [ -f "${PROJECT_DIR}/Resources/AppIcon.icns" ]; then
+    cp "${PROJECT_DIR}/Resources/AppIcon.icns" "${BUNDLE_DIR}/Contents/Resources/AppIcon.icns"
+fi
 
 chmod +x "${BUNDLE_DIR}/Contents/MacOS/${APP_NAME}"
 

@@ -29,9 +29,9 @@ public struct FooterView: View {
 
     private var countText: String {
         if isSearching {
-            return "\(filteredCount) of \(totalCount) listening port\(totalCount == 1 ? "" : "s")"
+            return "\(String(filteredCount)) of \(String(totalCount)) listening port\(totalCount == 1 ? "" : "s")"
         } else {
-            return "\(totalCount) listening port\(totalCount == 1 ? "" : "s")"
+            return "\(String(totalCount)) listening port\(totalCount == 1 ? "" : "s")"
         }
     }
 

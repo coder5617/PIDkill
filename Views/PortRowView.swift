@@ -33,8 +33,8 @@ public struct PortRowView: View {
                         .foregroundColor(.blue)
                 }
                 .buttonStyle(.borderless)
-                .help("Open http://localhost:\(entry.port) in browser")
-                .accessibilityLabel("Open http://localhost:\(entry.port) in browser")
+                .help("Open http://localhost:\(String(entry.port)) in browser")
+                .accessibilityLabel("Open http://localhost:\(String(entry.port)) in browser")
 
                 // Process Name
                 Text(entry.processName)
@@ -45,7 +45,7 @@ public struct PortRowView: View {
                 Spacer(minLength: 8)
 
                 // Port Number
-                Text(":\(entry.port)")
+                Text(":\(String(entry.port))")
                     .font(.system(size: 13, weight: .bold, design: .monospaced))
                     .foregroundColor(.accentColor)
                     .padding(.horizontal, 6)
@@ -66,7 +66,7 @@ public struct PortRowView: View {
                 Spacer(minLength: 8)
 
                 // PID Badge
-                Text("PID \(entry.pid)")
+                Text("PID \(String(entry.pid))")
                     .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .foregroundColor(.secondary)
 
