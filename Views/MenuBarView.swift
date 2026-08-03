@@ -117,7 +117,8 @@ public struct MenuBarView: View {
                 isScanning: viewModel.isScanning,
                 isLaunchAtLoginEnabled: viewModel.isLaunchAtLoginEnabled,
                 onRefresh: { viewModel.scanPorts() },
-                onToggleLaunchAtLogin: { viewModel.toggleLaunchAtLogin() }
+                onToggleLaunchAtLogin: { viewModel.toggleLaunchAtLogin() },
+                onQuit: { NSApplication.shared.terminate(nil) }
             )
         }
         .frame(width: 460)

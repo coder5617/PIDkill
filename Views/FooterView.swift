@@ -8,6 +8,7 @@ public struct FooterView: View {
     public let isLaunchAtLoginEnabled: Bool
     public let onRefresh: () -> Void
     public let onToggleLaunchAtLogin: () -> Void
+    public let onQuit: () -> Void
 
     public init(
         totalCount: Int,
@@ -16,7 +17,8 @@ public struct FooterView: View {
         isScanning: Bool,
         isLaunchAtLoginEnabled: Bool,
         onRefresh: @escaping () -> Void,
-        onToggleLaunchAtLogin: @escaping () -> Void
+        onToggleLaunchAtLogin: @escaping () -> Void,
+        onQuit: @escaping () -> Void = { NSApplication.shared.terminate(nil) }
     ) {
         self.totalCount = totalCount
         self.filteredCount = filteredCount
@@ -25,6 +27,7 @@ public struct FooterView: View {
         self.isLaunchAtLoginEnabled = isLaunchAtLoginEnabled
         self.onRefresh = onRefresh
         self.onToggleLaunchAtLogin = onToggleLaunchAtLogin
+        self.onQuit = onQuit
     }
 
     private var countText: String {
@@ -46,7 +49,7 @@ public struct FooterView: View {
             // Launch at Login Toggle Button
             Button(action: onToggleLaunchAtLogin) {
                 HStack(spacing: 3) {
-                    Image(systemName: isLaunchAtLoginEnabled ? "checkmark.seal.fill" : "power")
+                    Image(systemName: isLaunchAtLoginEnabled ? "checkmark.seal.fill" : "arrow.triangle.2.circlepath")
                         .font(.system(size: 10, weight: .semibold))
                     Text(isLaunchAtLoginEnabled ? "Autostart ON" : "Autostart OFF")
                         .font(.system(size: 10, weight: .medium))
@@ -82,6 +85,22 @@ public struct FooterView: View {
             .disabled(isScanning)
             .help("Refresh listening ports list")
             .accessibilityLabel("Refresh listening ports list")
+
+            // Quit App Power Button
+            Button(action: onQuit) {
+                HStack(spacing: 3) {
+                    Image(systemName: "power")
+                        .font(.system(size: 11, weight: .bold))
+                }
+                .foregroundColor(.red)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 3)
+                .background(Color.red.opacity(0.12))
+                .cornerRadius(4)
+            }
+            .buttonStyle(.plain)
+            .help("Quit PIDkill application")
+            .accessibilityLabel("Quit PIDkill application")
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
