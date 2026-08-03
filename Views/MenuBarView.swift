@@ -103,7 +103,7 @@ public struct MenuBarView: View {
                         .padding(.horizontal, 6)
                         .padding(.vertical, 6)
                     }
-                    .frame(maxHeight: 520)
+                    .frame(height: 480)
                 }
             }
 
@@ -121,7 +121,7 @@ public struct MenuBarView: View {
                 onQuit: { NSApplication.shared.terminate(nil) }
             )
         }
-        .frame(width: 460)
+        .frame(width: 460, height: 580)
         .onAppear {
             viewModel.scanPorts()
         }
