@@ -9,6 +9,14 @@ public struct MenuBarView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
+            // First Launch Autostart Banner
+            if viewModel.showLaunchAtLoginPrompt {
+                LaunchAtLoginBannerView(
+                    onEnable: { viewModel.enableLaunchAtLogin() },
+                    onDismiss: { viewModel.dismissLaunchAtLoginPrompt() }
+                )
+            }
+
             // Header Search Bar
             SearchBarView(
                 text: $viewModel.searchText,
@@ -95,7 +103,7 @@ public struct MenuBarView: View {
                         .padding(.horizontal, 6)
                         .padding(.vertical, 6)
                     }
-                    .frame(maxHeight: 380)
+                    .frame(maxHeight: 520)
                 }
             }
 
@@ -107,10 +115,12 @@ public struct MenuBarView: View {
                 filteredCount: viewModel.filteredCount,
                 isSearching: !viewModel.searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 isScanning: viewModel.isScanning,
-                onRefresh: { viewModel.scanPorts() }
+                isLaunchAtLoginEnabled: viewModel.isLaunchAtLoginEnabled,
+                onRefresh: { viewModel.scanPorts() },
+                onToggleLaunchAtLogin: { viewModel.toggleLaunchAtLogin() }
             )
         }
-        .frame(width: 440)
+        .frame(width: 460)
         .onAppear {
             viewModel.scanPorts()
         }

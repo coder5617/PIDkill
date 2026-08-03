@@ -5,20 +5,26 @@ public struct FooterView: View {
     public let filteredCount: Int
     public let isSearching: Bool
     public let isScanning: Bool
+    public let isLaunchAtLoginEnabled: Bool
     public let onRefresh: () -> Void
+    public let onToggleLaunchAtLogin: () -> Void
 
     public init(
         totalCount: Int,
         filteredCount: Int,
         isSearching: Bool,
         isScanning: Bool,
-        onRefresh: @escaping () -> Void
+        isLaunchAtLoginEnabled: Bool,
+        onRefresh: @escaping () -> Void,
+        onToggleLaunchAtLogin: @escaping () -> Void
     ) {
         self.totalCount = totalCount
         self.filteredCount = filteredCount
         self.isSearching = isSearching
         self.isScanning = isScanning
+        self.isLaunchAtLoginEnabled = isLaunchAtLoginEnabled
         self.onRefresh = onRefresh
+        self.onToggleLaunchAtLogin = onToggleLaunchAtLogin
     }
 
     private var countText: String {
@@ -30,13 +36,32 @@ public struct FooterView: View {
     }
 
     public var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             Text(countText)
                 .font(.system(size: 11, weight: .medium))
                 .foregroundColor(.secondary)
 
             Spacer()
 
+            // Launch at Login Toggle Button
+            Button(action: onToggleLaunchAtLogin) {
+                HStack(spacing: 3) {
+                    Image(systemName: isLaunchAtLoginEnabled ? "checkmark.seal.fill" : "power")
+                        .font(.system(size: 10, weight: .semibold))
+                    Text(isLaunchAtLoginEnabled ? "Autostart ON" : "Autostart OFF")
+                        .font(.system(size: 10, weight: .medium))
+                }
+                .foregroundColor(isLaunchAtLoginEnabled ? .green : .secondary)
+                .padding(.horizontal, 5)
+                .padding(.vertical, 3)
+                .background(isLaunchAtLoginEnabled ? Color.green.opacity(0.12) : Color.secondary.opacity(0.1))
+                .cornerRadius(4)
+            }
+            .buttonStyle(.plain)
+            .help(isLaunchAtLoginEnabled ? "PIDkill starts automatically at login. Click to disable." : "Click to enable PIDkill autostart at login.")
+            .accessibilityLabel("Toggle launch at login")
+
+            // Refresh Button
             Button(action: onRefresh) {
                 HStack(spacing: 4) {
                     Image(systemName: "arrow.clockwise")

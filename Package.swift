@@ -13,7 +13,7 @@ let package = Package(
         .executableTarget(
             name: "PIDkill",
             path: ".",
-            exclude: ["PIDkill.md", ".gitignore", "Resources/Info.plist", "Tests"],
+            exclude: ["PIDkill.md", ".gitignore", "Resources/Info.plist", "Tests", "scripts", "PIDkill.app"],
             sources: [
                 "App",
                 "Models",

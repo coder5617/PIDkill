@@ -9,6 +9,7 @@ DerivedData/
 *.xcodeproj/
 *.xcworkspace/
 .swiftpm/
+PIDkill.app/
 
 # User-specific
 *.mode1v3

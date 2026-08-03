@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-/// ViewModel managing state, searching, scanning, and process termination for PIDkill.
+/// ViewModel managing state, searching, scanning, process termination, and autostart settings for PIDkill.
 @MainActor
 public final class PortListViewModel: ObservableObject {
     @Published public var entries: [PortEntry] = []
@@ -11,10 +11,39 @@ public final class PortListViewModel: ObservableObject {
     @Published public var rowErrors: [Int32: String] = [:]
     @Published public var scanErrorMessage: String? = nil
 
+    @Published public var isLaunchAtLoginEnabled: Bool = LaunchAtLoginManager.isEnabled
+    @Published public var showLaunchAtLoginPrompt: Bool = false
+
     private let scanner: PortScanner
 
     public init(scanner: PortScanner = PortScanner()) {
         self.scanner = scanner
+        checkFirstLaunchAutostartPrompt()
+    }
+
+    private func checkFirstLaunchAutostartPrompt() {
+        let hasPrompted = UserDefaults.standard.bool(forKey: "hasPromptedLaunchAtLogin")
+        if !hasPrompted && !isLaunchAtLoginEnabled {
+            self.showLaunchAtLoginPrompt = true
+        }
+    }
+
+    public func enableLaunchAtLogin() {
+        LaunchAtLoginManager.setEnabled(true)
+        self.isLaunchAtLoginEnabled = LaunchAtLoginManager.isEnabled
+        UserDefaults.standard.set(true, forKey: "hasPromptedLaunchAtLogin")
+        self.showLaunchAtLoginPrompt = false
+    }
+
+    public func dismissLaunchAtLoginPrompt() {
+        UserDefaults.standard.set(true, forKey: "hasPromptedLaunchAtLogin")
+        self.showLaunchAtLoginPrompt = false
+    }
+
+    public func toggleLaunchAtLogin() {
+        let newState = !isLaunchAtLoginEnabled
+        LaunchAtLoginManager.setEnabled(newState)
+        self.isLaunchAtLoginEnabled = LaunchAtLoginManager.isEnabled
     }
 
     /// Filtered entries based on `searchText` matching port, PID, process name, or executable path.
