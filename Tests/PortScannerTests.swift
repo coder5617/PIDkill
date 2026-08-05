@@ -35,7 +35,7 @@ final class PortScannerTests: XCTestCase {
 
     @MainActor
     func testViewModelSearchFiltering() {
-        let viewModel = PortListViewModel()
+        let viewModel = PortListViewModel(autoScan: false)
         viewModel.entries = [
             PortEntry(port: 3000, pid: 100, processName: "node", executablePath: "/usr/bin/node"),
             PortEntry(port: 8080, pid: 200, processName: "python", executablePath: "/usr/bin/python3"),

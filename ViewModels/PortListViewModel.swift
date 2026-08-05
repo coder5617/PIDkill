@@ -16,9 +16,12 @@ public final class PortListViewModel: ObservableObject {
 
     private let scanner: PortScanner
 
-    public init(scanner: PortScanner = PortScanner()) {
+    public init(scanner: PortScanner = PortScanner(), autoScan: Bool = true) {
         self.scanner = scanner
         checkFirstLaunchAutostartPrompt()
+        if autoScan {
+            scanPorts()
+        }
     }
 
     private func checkFirstLaunchAutostartPrompt() {
