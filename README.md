@@ -1,4 +1,4 @@
-# PIDkill ⚡️
+# PIDkill
 
 A lightweight, high-performance native macOS menu-bar application for instantly viewing and terminating processes listening on local ports.
 
