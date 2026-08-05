@@ -11,9 +11,15 @@ DerivedData/
 .swiftpm/
 PIDkill.app/
 
-# User-specific
+# User-specific & Local Test Data
 *.mode1v3
 *.mode2v3
 *.perspectivev3
 *.pbxuser
 *.xcuserdata
+.env*
+*.local
+*.dump
+local_test_data/
+mock_data/
+
