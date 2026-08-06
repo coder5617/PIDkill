@@ -16,7 +16,7 @@ All contributions must follow a **Fork and Pull Request** workflow:
 3. **Develop & Test Locally**: Build and test your code locally. Ensure no warnings or errors are introduced.
 4. **Run Security & PII Audit**: Before committing, run the repository readiness audit script:
    ```bash
-   bash ./scripts/auditpublicreadiness.sh
+   bash ./scripts/audit_public_readiness.sh
    ```
 5. **Commit Your Changes**: Use clear, descriptive commit messages. Do not bundle unrelated changes in a single PR.
 6. **Push & Open a Pull Request**: Push your branch to your fork. Submit a Pull Request targeting the `main` branch.
