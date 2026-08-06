@@ -22,4 +22,5 @@ PIDkill.app/
 *.dump
 local_test_data/
 mock_data/
+.ai/
 

@@ -3,7 +3,7 @@
 A lightweight, high-performance native macOS menu-bar application for instantly viewing and terminating processes listening on local ports.
 
 ![macOS 13+](https://img.shields.io/badge/macOS-13.0%2B-blue.svg)
-![Apple Silicon](https://img.shields.io/badge/Architecture-arm64-brightgreen.svg)
+![macOS Architecture](https://img.shields.io/badge/Architecture-arm64-brightgreen.svg)
 ![Swift 6](https://img.shields.io/badge/Swift-6.0-orange.svg)
 ![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-purple.svg)
 
@@ -98,6 +98,12 @@ Run unit tests via SPM:
 ```bash
 swift test
 ```
+
+---
+
+## Contributing
+
+Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and the workflow for submitting pull requests.
 
 ---
 
